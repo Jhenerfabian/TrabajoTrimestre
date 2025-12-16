@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plataforma Profesional de Programación – Java</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{
+ --bg:#0b1020;--card:#111827;--primary:#38bdf8;--secondary:#22c55e;--accent:#a855f7;--danger:#ef4444;--text:#e5e7eb;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Segoe UI',Arial;background:var(--bg);color:var(--text)}
+header{padding:30px;text-align:center;background:linear-gradient(135deg,var(--primary),var(--accent));color:#020617}
+nav{position:sticky;top:0;background:#020617;padding:12px;text-align:center;z-index:100}
+nav a{color:var(--text);margin:10px;text-decoration:none;font-weight:bold}
+nav a:hover{color:var(--primary)}
+main{max-width:1300px;margin:auto;padding:14px}
+section{background:var(--card);margin:20px;padding:22px;border-radius:18px;box-shadow:0 0 30px rgba(56,189,248,.18);animation:fade .6s}
+h2{color:var(--primary)}
+pre{background:#020617;border-left:4px solid var(--accent);padding:14px;border-radius:10px;color:var(--secondary);overflow:auto}
+textarea{width:100%;min-height:140px;background:#020617;color:var(--text);border:1px solid var(--accent);border-radius:12px;padding:12px}
+button{background:var(--primary);color:#020617;border:none;padding:12px 18px;border-radius:12px;cursor:pointer;font-weight:bold;margin-top:12px}
+button:hover{background:var(--secondary)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.resultado{margin-top:12px;font-weight:bold}
+.progress{background:#020617;border-radius:999px;overflow:hidden;margin:12px}
+.progress-bar{height:14px;background:linear-gradient(90deg,var(--secondary),var(--primary));width:0%;transition:.6s}
+.badge{display:inline-block;padding:6px 12px;border-radius:999px;background:var(--accent);color:#020617;font-weight:bold;margin-top:8px}
+@keyframes fade{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header>
+<h1><i class="fas fa-user-graduate"></i> Plataforma Profesional de Programación</h1>
+<p>Curso interactivo de Java · Lógica · Evaluación avanzada</p>
+</header>
+
+<div class="progress"><div id="bar" class="progress-bar"></div></div>
+
+<nav>
+<a href="#if">IF / ELSE</a>
+<a href="#while">WHILE</a>
+<a href="#for">FOR</a>
+<a href="#switch">SWITCH</a>
+<a href="#quiz">Práctica</a>
+<a href="#exam">Examen Final</a>
+</nav>
+
+<main>
+<section id="if">
+<h2><i class="fas fa-code-branch"></i> IF / ELSE</h2>
+<p>Permite tomar decisiones en el programa. Ejecuta un bloque si la condición es verdadera y otro si es falsa.</p>
+<ul>
+<li>Evalúa una condición booleana</li>
+<li>Controla el flujo del programa</li>
+</ul>
+<pre>int edad = 20;
+
+if (edad >= 18) {
+    System.out.println("Mayor de edad");
+} else {
+    System.out.println("Menor de edad");
+}</pre>
+<span class="badge">Decisiones</span>
+</section>
+
+<section id="while">
+<h2><i class="fas fa-sync"></i> WHILE</h2>
+<p>Repite un bloque de código mientras una condición sea verdadera.</p>
+<ul>
+<li>La condición se evalúa antes de ejecutar</li>
+<li>Puede no ejecutarse ninguna vez</li>
+</ul>
+<pre>int i = 1;
+while (i <= 3) {
+    System.out.println(i);
+    i++;
+}</pre>
+<span class="badge">Repetición condicional</span>
+</section>
+
+<section id="for">
+<h2><i class="fas fa-redo"></i> FOR</h2>
+<p>Se usa cuando conoces cuántas veces se debe repetir una acción.</p>
+<ul>
+<li>Inicialización</li>
+<li>Condición</li>
+<li>Incremento</li>
+</ul>
+<pre>for (int i = 0; i < 5; i++) {
+    System.out.println(i);
+}</pre>
+<span class="badge">Contadores</span>
+</section>
+
+<section id="switch">
+<h2><i class="fas fa-random"></i> SWITCH</h2>
+<p>Selecciona una opción entre múltiples casos posibles.</p>
+<ul>
+<li>Evalúa una variable</li>
+<li>Ejecuta el case coincidente</li>
+</ul>
+<pre>int opcion = 1;
+
+switch (opcion) {
+    case 1:
+        System.out.println("Comida");
+        break;
+    case 2:
+        System.out.println("Bebida");
+        break;
+    default:
+        System.out.println("Inválido");
+}</pre>
+<span class="badge">Menús</span>
+</section>
+
+<section id="quiz">
+<h2><i class="fas fa-dumbbell"></i> Práctica Guiada</h2>
+<p id="q"></p>
+<div id="options" class="grid"></div>
+<textarea id="code" style="display:none" placeholder="Escribe código Java aquí..."></textarea>
+<button id="send" style="display:none">Enviar</button>
+<div id="res" class="resultado"></div>
+</section>
+
+<section id="exam">
+<h2><i class="fas fa-shield-alt"></i> Examen Final</h2>
+<p>Intento único. Preguntas avanzadas de análisis, escritura y corrección de código Java.</p>
+<button onclick="startExam()">Iniciar Examen</button>
+<div id="examArea" style="display:none">
+<p id="eq"></p>
+<div id="eoptions" class="grid"></div>
+<textarea id="ecode" style="display:none"></textarea>
+<button id="esend" style="display:none">Enviar</button>
+<div id="eres" class="resultado"></div>
+</div>
+</section>
+</main>
+
+<script>
+let progress=0;const total=20;
+const questions=[
+ {type:'mc',p:'¿Cuántas veces se ejecuta? for(int i=0;i<3;i++)',o:['2','3','4'],r:1},
+ {type:'code',p:'Escribe un if que valide edad >= 18',check:t=>t.includes('if')&&t.includes('>=' )}
+];
+let qi=0;
+
+function showQ(){const q=questions[qi];if(!q)return;render(q,'q','options','code','send','res',answer,sendCode)}
+
+function render(q,qt,op,code,send,res,ansFn,codeFn){
+ document.getElementById(qt).innerText=q.p;
+ document.getElementById(op).innerHTML='';
+ document.getElementById(res).innerText='';
+ document.getElementById(code).style.display='none';
+ document.getElementById(send).style.display='none';
+ if(q.type==='mc'){
+  q.o.forEach((v,i)=>{const b=document.createElement('button');b.textContent=v;b.onclick=()=>ansFn(i);document.getElementById(op).appendChild(b);});
+ } else {
+  document.getElementById(code).style.display='block';
+  document.getElementById(send).style.display='block';
+  document.getElementById(send).onclick=codeFn;
+  document.getElementById(code).value='';
+ }
+}
+
+function answer(i){const q=questions[qi];res.innerText=i===q.r?'Correcto':'Incorrecto';if(i===q.r)progress++;next()}
+function sendCode(){const q=questions[qi];const t=code.value.toLowerCase();res.innerText=q.check&&q.check(t)?'Correcto':'Incorrecto';if(q.check&&q.check(t))progress++;next()}
+function next(){setTimeout(()=>{qi++;update();showQ();},700)}
+
+let examStarted=false;let ei=0;let examScore=0;
+const examQ=[
+ {type:'mc',p:'¿Qué imprime? int i=0; while(i<3){i++;} print i',o:['2','3','4'],r:1},
+ {type:'code',p:'Corrige el error: for(int i=0; i<5 i++)',check:t=>t.includes(';')}
+];
+
+function startExam(){if(examStarted)return;examStarted=true;document.getElementById('examArea').style.display='block';showExam()}
+function showExam(){const q=examQ[ei];if(!q)return endExam();render(q,'eq','eoptions','ecode','esend','eres',examAns,examCode)}
+function examAns(i){if(i===examQ[ei].r)examScore++;nextExam()}
+function examCode(){const q=examQ[ei];const t=ecode.value.toLowerCase();if(q.check&&q.check(t))examScore++;nextExam()}
+function nextExam(){setTimeout(()=>{ei++;showExam();},800)}
+function endExam(){eres.innerText=examScore>=2?'APROBADO':'REPROBADO';progress+=examScore;update()}
+
+function update(){document.getElementById('bar').style.width=Math.min(100,(progress/total)*100)+'%'}
+update();showQ();
+</script>
+</body>
+</html>
